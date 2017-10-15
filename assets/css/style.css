@@ -5,6 +5,7 @@
     max-height: 25%;
 	min-height: 200px;
 }
+
 #login{
     margin-left: 25% ;
     margin-top: auto ;
@@ -15,15 +16,15 @@
     min-width: 200px;
 }
 
-#email, #lname, #fname, #uname, #passwd, #place, #plz{
 
-}
 h3{
     margin: 0;
 }
+
 #submit{
   
 }
+
 h1{
     margin: 5px;
 }

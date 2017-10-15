@@ -8,7 +8,6 @@
     <meta name="description" content="The Great Gradingsystem">
     <meta name="author" content="Lars Ragutt">
 
-    <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <?php
     include 'default.php';
