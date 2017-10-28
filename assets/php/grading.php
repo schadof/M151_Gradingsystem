@@ -1,5 +1,5 @@
 <?php
-
+include './login.php';
 $con = connectDB();
 
 //check connection
@@ -25,10 +25,11 @@ if (!$result){
 echo "<table>";
 while (odbc_fetch_row($result))
 {
-    $note=odbc_result($result,"Note");
+    $mark=odbc_result($result,"mark");
+    $weight=odbc_result($result,"weight");
 
-    echo "<tr><td>$note</td>";
+    echo "<td>$mark" . "x" . "$weight</td>";
 }
 echo "</table>";
 odbc_close($con);
-?>
+

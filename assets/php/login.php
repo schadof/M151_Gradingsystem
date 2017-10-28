@@ -2,8 +2,20 @@
 
 //Conects to Database and returns connection
 function connectDB(){
-    $connection = mysqli_connect("localhost", "root", "", "greades"); // Establishing connection with server..
-    return $connection;
+//connection data
+$db_odbc = 'M151_GREADES';
+$db_user = 'root';
+$db_pass = '';
+
+//connect
+$con = odbc_connect($db_odbc,$db_user,$db_pass);
+
+//check connection
+if (!$con){
+	exit("Connection Failed: " . $con);
+}
+
+return $con;
 }
 
 //Returns list of students
