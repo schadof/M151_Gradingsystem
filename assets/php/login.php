@@ -46,11 +46,6 @@ function login() {
     odbc_close(connectDB()); // Closing Connection
 }
 
-//Logs out current user
-function logout() {
-    @session_destroy();
-}
-
 //Creates user
 function createUser() {
     $name=$_POST['username'];

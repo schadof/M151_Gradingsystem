@@ -17,10 +17,21 @@
 
 <body>
 <?php
-include 'assets/includes/loginform.php';
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    include 'assets/php/login.php';
-    login();
+if(!isset($_SESSION['login_user'])) {
+    include 'assets/includes/loginform.php';
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        include 'assets/php/login.php';
+        login();
+        if(isset($_SESSION['login_user'])){
+            header("location: index.php");
+        }
+    }
+}
+else{
+    echo "<a href='assets/php/logout.php'>Logout</a>";
+    echo "<br>";
+    echo "<br>";
+    include 'assets/php/grading.php';
 }
 ?>
 </body>

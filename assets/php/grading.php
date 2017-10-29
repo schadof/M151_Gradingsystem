@@ -1,5 +1,6 @@
 <?php
-include './login.php';
+include 'default.php';
+include 'login.php';
 $con = connectDB();
 
 //check connection
@@ -17,14 +18,16 @@ while(odbc_fetch_row($result))
 	$module = odbc_result($result,"module");
 /* show tables */
 $sql1 = "
-SELECT u.fname, u.lname, c.name, ma.mark, ma.weight, ma.description, mo.module FROM users u
+SELECT u.fname, u.lname, u.username, c.name, ma.mark, ma.weight, ma.description, mo.module FROM users u
 JOIN classes c
 ON u.class = c.id
 JOIN marks ma
 ON ma.user = u.id
 JOIN modules mo
 ON ma.module = mo.id
-WHERE mo.module = '$module';";
+WHERE mo.module = '$module'
+AND
+u.username = '" . $_SESSION['login_user'] . "';";
 $result1 = odbc_exec($con,$sql1);
 //check SQL
 if (!$result1){
