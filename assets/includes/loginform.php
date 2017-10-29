@@ -8,7 +8,7 @@
 <div id="form">
     <h1 id="title">Enter Login Data</h1>
     <div id="login">
-        <form action="/login.php">
+        <form action=".../index.php" method="POST">
             Username:<br>
             <input type="text" name="username" placeholder="Username">
             <br>

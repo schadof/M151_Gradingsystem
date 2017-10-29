@@ -20,9 +20,9 @@ return $con;
 
 //Returns list of students
 function getStudents (){
-    $query = mysqli_query(connectDB(), "select id, name from users");
-    $students = mysqli_fetch_object($query);
-    mysqli_close(connectDB()); // Closing Connection
+    $query = odbc_exec(connectDB(), "select * from users");
+    $students = odbc_result($query);
+    odbc_close(connectDB()); // Closing Connection
     return $students;
 }
 
@@ -34,10 +34,10 @@ function login() {
     // Establishing Connection with Server by passing server_name, user_id, password and database as a parameter
     $name = stripslashes($name);
     $password = stripslashes($password);
-    $password = mysqli_real_escape_string(connectDB(), $password);
+    $password = odbc_prepare(connectDB(), $password);
     // SQL query to fetch information of registerd users and finds user match.
-    $query = mysqli_query(connectDB(), "select * from users where `Name` like '".$name."' AND Password like '".$password."'");
-    $rows = mysqli_num_rows($query);
+    $query = odbc_exec(connectDB(), "select * from users where `Name` like '".$name."' AND Password like '".$password."'");
+    $rows = odbc_num_rows($query);
     if ($rows == 1) {
         $_SESSION['login_user'] = $name; // Initializing Session
     } else {
@@ -45,7 +45,7 @@ function login() {
         echo $error;
         $_SESSION['login_failure'] = 'true';
     }
-    mysqli_close(connectDB()); // Closing Connection
+    odbc_close(connectDB()); // Closing Connection
 }
 
 //Logs out current user
@@ -59,9 +59,9 @@ function createUser() {
     $password=md5($_POST['password']);
     $name = stripslashes($name);
     $password = stripslashes($password);
-    $password = mysqli_real_escape_string(connectDB(), $password);
-    $query = mysqli_query(connectDB(), "insert into `users` (`Name`, Password) VALUES ('".$name."', '".$password."')");
-    mysqli_close(connectDB()); // Closing Connection
+    $password = odbc_prepare(connectDB(), $password);
+    $query = odbc_exec(connectDB(), "insert into `users` (`Name`, Password) VALUES ('".$name."', '".$password."')");
+    odbc_close(connectDB()); // Closing Connection
 }
 
 ?>
