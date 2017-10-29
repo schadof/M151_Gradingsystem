@@ -33,10 +33,8 @@ function login() {
     $password = md5($_POST['password']);
     // Establishing Connection with Server by passing server_name, user_id, password and database as a parameter
     $name = stripslashes($name);
-    $password = stripslashes($password);
-    $password = odbc_prepare(connectDB(), $password);
     // SQL query to fetch information of registerd users and finds user match.
-    $query = odbc_exec(connectDB(), "select * from users where `Name` like '".$name."' AND Password like '".$password."'");
+    $query = odbc_exec(connectDB(), "select * from users where `username` like '".$name."' AND password like '".$password."'");
     $rows = odbc_num_rows($query);
     if ($rows == 1) {
         $_SESSION['login_user'] = $name; // Initializing Session
@@ -59,7 +57,6 @@ function createUser() {
     $password=md5($_POST['password']);
     $name = stripslashes($name);
     $password = stripslashes($password);
-    $password = odbc_prepare(connectDB(), $password);
     $query = odbc_exec(connectDB(), "insert into `users` (`Name`, Password) VALUES ('".$name."', '".$password."')");
     odbc_close(connectDB()); // Closing Connection
 }
