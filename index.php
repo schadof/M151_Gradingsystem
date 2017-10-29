@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
     <?php
-    include 'default.php';
+    include 'assets/php/default.php';
     ?>
 
 </head>
@@ -18,6 +18,10 @@
 <body>
 <?php
 include 'assets/includes/loginform.php';
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    include 'assets/php/login.php';
+    login();
+}
 ?>
 </body>
 </html>

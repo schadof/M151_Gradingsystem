@@ -42,7 +42,7 @@ while (odbc_fetch_row($result1))
     $mark=odbc_result($result1,"mark");
     $weight=odbc_result($result1,"weight");
 
-    echo "<td>$mark" . "x" . "$weight</td>";
+    echo "<td>$mark" . "*" . "$weight</td>";
 }
 echo "</table>";
 echo "</br>";
