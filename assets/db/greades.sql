@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 10. Okt 2017 um 21:39
--- Server-Version: 10.1.19-MariaDB
--- PHP-Version: 5.6.28
+-- Host: localhost
+-- Generation Time: Oct 24, 2017 at 07:12 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,24 +19,33 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `greades`
+-- Database: `greades`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `classes`
+-- Table structure for table `classes`
 --
 
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
-  `name` int(11) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`id`, `name`) VALUES
+(1, 'AP15a'),
+(2, 'AP15b'),
+(3, 'AP15c');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `marks`
+-- Table structure for table `marks`
 --
 
 CREATE TABLE `marks` (
@@ -47,32 +58,57 @@ CREATE TABLE `marks` (
   `teacher` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `marks`
+--
+
+INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `user`, `teacher`) VALUES
+(2, 6, 2, 'Very Good', 1, 1, 4);
+
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `modules`
+-- Table structure for table `modules`
 --
 
 CREATE TABLE `modules` (
   `id` int(11) NOT NULL,
-  `module` int(11) NOT NULL
+  `module` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules`
+--
+
+INSERT INTO `modules` (`id`, `module`) VALUES
+(1, 'M151'),
+(2, 'M150'),
+(3, 'M146');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `occupations`
+-- Table structure for table `occupations`
 --
 
 CREATE TABLE `occupations` (
   `id` int(11) NOT NULL,
-  `occupation` int(11) NOT NULL
+  `occupation` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `occupations`
+--
+
+INSERT INTO `occupations` (`id`, `occupation`) VALUES
+(1, 'Administrator'),
+(2, 'Teacher'),
+(3, 'Student');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -81,72 +117,110 @@ CREATE TABLE `users` (
   `lname` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `occupation` int(11) NOT NULL,
-  `class` int(11) NOT NULL
+  `class` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indizes der exportierten Tabellen
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fname`, `lname`, `password`, `occupation`, `class`) VALUES
+(1, 'Lars', 'Ragutt', 'test', 1, 2),
+(4, 'Michael', 'Müller', 'Banane13', 2, NULL);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `classes`
+-- Indexes for table `classes`
 --
 ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `marks`
+-- Indexes for table `marks`
 --
 ALTER TABLE `marks`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teacher` (`teacher`),
+  ADD KEY `module` (`module`),
+  ADD KEY `user` (`user`);
 
 --
--- Indizes für die Tabelle `modules`
+-- Indexes for table `modules`
 --
 ALTER TABLE `modules`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `occupations`
+-- Indexes for table `occupations`
 --
 ALTER TABLE `occupations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `class` (`class`),
+  ADD KEY `occupation` (`occupation`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `classes`
+-- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT für Tabelle `marks`
+-- AUTO_INCREMENT for table `marks`
 --
 ALTER TABLE `marks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT für Tabelle `modules`
+-- AUTO_INCREMENT for table `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT für Tabelle `occupations`
+-- AUTO_INCREMENT for table `occupations`
 --
 ALTER TABLE `occupations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT für Tabelle `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `marks`
+--
+ALTER TABLE `marks`
+  ADD CONSTRAINT `marks_ibfk_1` FOREIGN KEY (`teacher`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `marks_ibfk_2` FOREIGN KEY (`module`) REFERENCES `modules` (`id`),
+  ADD CONSTRAINT `marks_ibfk_3` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`class`) REFERENCES `classes` (`id`),
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`occupation`) REFERENCES `occupations` (`id`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
