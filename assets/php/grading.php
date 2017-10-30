@@ -55,7 +55,7 @@ while (odbc_fetch_row($result1))
 }
 $calculation = "(" . $calculation . ")/(" . $weighting . ")";
 eval( '$math = (' . $calculation . ');' );
-echo "<td>$math</td>";
+echo "<td class='grade'>$math</td>";
 echo "</table>";
 echo "</br>";
 $calculation = "";

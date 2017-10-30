@@ -32,3 +32,13 @@ h1{
 table, th, td {
     border: 1px solid black;
 }
+
+td{
+    width: 36px;
+    height: 18px;
+    text-align: center;
+}
+.grade{
+    background-color: aqua;
+    align: right;
+}
