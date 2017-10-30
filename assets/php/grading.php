@@ -37,18 +37,30 @@ if (!$result1){
 if(odbc_num_rows($result1) != 0)
 {
 echo $module;
-}
-
 echo "<table>";
 while (odbc_fetch_row($result1))
 {
-    $mark=odbc_result($result1,"mark");
-    $weight=odbc_result($result1,"weight");
+    $mark = odbc_result($result1,"mark");
+    $weight = odbc_result($result1,"weight");
+    $formula = $mark . "*" . $weight;
+    if(!$calculation && $weight) {
+        $calculation = $formula;
+        $weighting = $weight;
+    } else {
+        $calculation = $calculation . "+" . $formula;
+        $weighting = $weighting . "+" . $weight;
+    }
 
-    echo "<td>$mark" . "*" . "$weight</td>";
+    echo "<td>$formula</td>";
 }
+$calculation = "(" . $calculation . ")/(" . $weighting . ")";
+eval( '$math = (' . $calculation . ');' );
+echo "<td>$math</td>";
 echo "</table>";
 echo "</br>";
+$calculation = "";
+$weight = "";
+}
 }
 odbc_close($con);
 
