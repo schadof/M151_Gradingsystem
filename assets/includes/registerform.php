@@ -10,8 +10,8 @@ include '../php/login.php';
 </head>
 <body>
 <div id="form">
-    <h1 id="title">Enter Login Data</h1>
-    <div id="login">
+    <h1 id="title">Enter User Data</h1>
+    <div id="register">
         <form action="/index.php" method="POST">
             First Name:<br>
             <input type="text" name="fname" placeholder="First Name">
