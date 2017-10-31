@@ -30,7 +30,7 @@ include '../php/login.php';
                 <?php
                 $con = connectDB();
 
-                $sql = "SELECT occupation FROM occupations;";
+                $sql = "SELECT * FROM occupations;";
 
                 $result = odbc_exec($con,$sql);
 
@@ -47,14 +47,14 @@ include '../php/login.php';
                 <?php
                 $con = connectDB();
 
-                $sql = "SELECT module FROM modules;";
+                $sql = "SELECT * FROM classes;";
 
                 $result = odbc_exec($con,$sql);
 
                 while(odbc_fetch_row($result)) {
-                    $module_id = odbc_result($result,"id");
-                    $module = odbc_result($result, "module");
-                    echo "<option value='$module_id'>$module</option>";
+                    $class_id = odbc_result($result,"id");
+                    $class = odbc_result($result, "class");
+                    echo "<option value='$class_id'>$class</option>";
                 }
                 ?>
             </select>

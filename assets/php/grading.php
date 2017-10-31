@@ -13,7 +13,7 @@ while(odbc_fetch_row($result))
 	$module = odbc_result($result,"module");
 /* show tables */
 $sql1 = "
-SELECT u.fname, u.lname, u.username, c.name, ma.mark, ma.weight, ma.description, mo.module FROM users u
+SELECT u.fname, u.lname, u.username, c.class, ma.mark, ma.weight, ma.description, mo.module FROM users u
 JOIN classes c
 ON u.class = c.id
 JOIN marks ma

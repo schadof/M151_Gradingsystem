@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2017 at 07:12 PM
+-- Generation Time: Oct 31, 2017 at 03:43 PM
 -- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `class` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`id`, `name`) VALUES
+INSERT INTO `classes` (`id`, `class`) VALUES
 (1, 'AP15a'),
 (2, 'AP15b'),
 (3, 'AP15c');
@@ -63,7 +63,9 @@ CREATE TABLE `marks` (
 --
 
 INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `user`, `teacher`) VALUES
-(2, 6, 2, 'Very Good', 1, 1, 4);
+(2, 6, 2, 'Very Good', 1, 1, 4),
+(3, 5, 1, 'meh', 2, 1, 4),
+(4, 6, 1, 'good', 1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -115,6 +117,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `occupation` int(11) NOT NULL,
   `class` int(11) DEFAULT NULL
@@ -124,9 +127,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `password`, `occupation`, `class`) VALUES
-(1, 'Lars', 'Ragutt', 'test', 1, 2),
-(4, 'Michael', 'Müller', 'Banane13', 2, NULL);
+INSERT INTO `users` (`id`, `fname`, `lname`, `username`, `password`, `occupation`, `class`) VALUES
+(1, 'Lars', 'Ragutt', 'l.ragutt', '098f6bcd4621d373cade4e832627b4f6', 1, 2),
+(4, 'Michael', 'Müller', 'm.müller', '098f6bcd4621d373cade4e832627b4f6', 2, NULL);
 
 --
 -- Indexes for dumped tables
@@ -181,7 +184,7 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT for table `marks`
 --
 ALTER TABLE `marks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `modules`

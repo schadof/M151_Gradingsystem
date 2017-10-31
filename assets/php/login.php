@@ -48,12 +48,17 @@ function login() {
 
 //Creates user
 function createUser() {
-    $name=$_POST['username'];
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $username=$_POST['username'];
     $password=md5($_POST['password']);
-    $name = stripslashes($name);
-    $password = stripslashes($password);
-    $query = odbc_exec(connectDB(), "insert into `users` (`Name`, Password) VALUES ('".$name."', '".$password."')");
+    $occupation=$_POST['occupation'];
+    $class=$_POST['class'];
+    $fname = stripslashes($fname);
+    $lname = stripslashes($lname);
+    $occupation = stripslashes($occupation);
+    $class = stripslashes($class);
+    $query = odbc_exec(connectDB(), "insert into `users` (fname, lname, username, password, occupation, class) 
+                                                VALUES ($fname, $lname, $username, $password, $occupation, $class)");
     odbc_close(connectDB()); // Closing Connection
 }
-
-?>
