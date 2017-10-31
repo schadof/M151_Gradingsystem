@@ -3,11 +3,6 @@ include 'default.php';
 include 'login.php';
 $con = connectDB();
 
-//check connection
-if (!$con){
-    exit("Connection Failed: " . $con);
-}
-
 $sql = "
 SELECT module FROM modules;";
 

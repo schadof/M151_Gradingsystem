@@ -17,7 +17,6 @@
             <br><br>
             <input type="submit" value="Submit">
         </form>
-        <a href="HTML/register.php">register</a>
     </div>
 </div>
 </body>
