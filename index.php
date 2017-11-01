@@ -34,7 +34,11 @@ else{
     echo "<a href='assets/php/logout.php'>Logout</a>";
     echo "<br>";
     echo "<br>";
-    include 'assets/php/grading.php';
+    include 'assets/includes/grading.php';
+}
+if ($_SESSION['occupation'] == "Administrator"){
+    echo "<a href='/assets/includes/students.php'>Students</a></br>";
+    echo "<a href='/assets/includes/registerform.php'>Register</a>";
 }
 ?>
 </body>

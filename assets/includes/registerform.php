@@ -1,6 +1,7 @@
 <?php
 @session_start();
-include '../php/login.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+include "$root/assets/php/login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

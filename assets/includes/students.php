@@ -23,4 +23,4 @@ if(odbc_num_rows($students) != 0)
     echo "</table>";
     odbc_close(connectDB()); // Closing Connection
 }
-echo "<a href='/assets/includes/registerform.php'>register</a>";
+echo "<a href='/index.php'>Home</a>";

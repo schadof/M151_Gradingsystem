@@ -39,10 +39,20 @@ function login() {
     // Establishing Connection with Server by passing server_name, user_id, password and database as a parameter
     $name = stripslashes($name);
     // SQL query to fetch information of registerd users and finds user match.
-    $query = odbc_exec(connectDB(), "select * from users where `username` like '".$name."' AND password like '".$password."'");
-    $rows = odbc_num_rows($query);
+    $login_sql = "
+    SELECT u.username, u.password, o.occupation FROM users u
+    JOIN occupations o
+    ON u.occupation = o.id
+    WHERE `username` 
+    LIKE '".$name."' 
+    AND password 
+    LIKE '".$password."'";
+    $result = odbc_exec(connectDB(), $login_sql);
+    $rows = odbc_num_rows($result);
     if ($rows == 1) {
+        $occupation = odbc_result($result,"occupation");
         $_SESSION['login_user'] = $name; // Initializing Session
+        $_SESSION['occupation'] = $occupation; // Initializing Session
     } else {
         $error = "Username or Password is invalid";
         echo $error;
