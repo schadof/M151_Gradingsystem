@@ -29,6 +29,7 @@ if(!isset($_SESSION['login_user'])) {
     echo $_POST['occupation'];
     echo $_POST['class'];
     if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['occupation']) && isset($_POST['class'])){
+        include 'assets/php/login.php';
         createUser();
     }
 }

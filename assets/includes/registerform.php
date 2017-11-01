@@ -26,7 +26,7 @@ include '../php/login.php';
             <input type="password" name="password" placeholder="Password">
             <br>
             Occupation:<br>
-            <select id="occupation">
+            <select name="occupation">
                 <?php
                 $con = connectDB();
 
@@ -43,7 +43,7 @@ include '../php/login.php';
             </select>
             <br>
             Class:<br>
-            <select id="class">
+            <select name="class">
                 <?php
                 $con = connectDB();
 
