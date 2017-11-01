@@ -1,7 +1,7 @@
 <?php
 @session_start();
 $root = $_SERVER['DOCUMENT_ROOT'];
-include "$root/assets/php/login.php";
+include_once "$root/assets/php/login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,10 +59,13 @@ include "$root/assets/php/login.php";
                 }
                 ?>
             </select>
-            <br><br>
+            <br>
+            <br>
             <input type="submit" value="Submit">
         </form>
     </div>
 </div>
+<br>
+<a href='/index.php'>Home</a>
 </body>
 </html>

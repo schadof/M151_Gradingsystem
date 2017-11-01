@@ -1,7 +1,7 @@
 <?php
 @session_start();
 $root = $_SERVER['DOCUMENT_ROOT'];
-include "$root/assets/php/login.php";
+include_once "$root/assets/php/login.php";
 $con = connectDB();
 
 $sql = "

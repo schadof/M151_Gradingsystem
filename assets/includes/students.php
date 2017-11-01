@@ -1,7 +1,7 @@
 <?php
 @session_start();
 $root = $_SERVER['DOCUMENT_ROOT'];
-include "$root/assets/php/login.php";
+include_once "$root/assets/php/login.php";
 $students = getStudents();
 
 if(odbc_num_rows($students) != 0)
@@ -23,4 +23,3 @@ if(odbc_num_rows($students) != 0)
     echo "</table>";
     odbc_close(connectDB()); // Closing Connection
 }
-echo "<a href='/index.php'>Home</a>";
