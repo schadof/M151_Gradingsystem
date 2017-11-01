@@ -1,5 +1,5 @@
 <?php
-
+@session_start();
 //Conects to Database and returns connection
 function connectDB(){
 //connection data
@@ -20,9 +20,14 @@ return $con;
 
 //Returns list of students
 function getStudents (){
-    $query = odbc_exec(connectDB(), "select * from users");
-    $students = odbc_result($query);
-    odbc_close(connectDB()); // Closing Connection
+    $students_sql = "
+    SELECT u.id, u.fname, u.lname, u.username, c.class FROM users u
+    JOIN classes c
+    ON u.class = c.id
+    JOIN occupations o
+    ON u.occupation = o.id
+    WHERE o.occupation='Student'";
+    $students = odbc_exec(connectDB(), $students_sql);
     return $students;
 }
 
@@ -49,11 +54,22 @@ function login() {
 //Creates user
 function createUser() {
     $fname=$_POST['fname'];
+    unset($_POST['fname']);
+
     $lname=$_POST['lname'];
+    unset($_POST['lname']);
+
     $username=$_POST['username'];
+    unset($_POST['username']);
+
     $password=md5($_POST['password']);
+    unset($_POST['password']);
+
     $occupation=$_POST['occupation'];
+    unset($_POST['occupation']);
+
     $class=$_POST['class'];
+    unset($_POST['class']);
     $fname = stripslashes($fname);
     $lname = stripslashes($lname);
     $occupation = stripslashes($occupation);

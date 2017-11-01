@@ -1,5 +1,5 @@
 <?php
-include 'default.php';
+@session_start();
 include 'login.php';
 $con = connectDB();
 
