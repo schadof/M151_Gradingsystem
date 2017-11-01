@@ -18,7 +18,7 @@
 @session_start();
 
 if(!isset($_SESSION['login_user'])) {
-    include 'assets/includes/loginform.php';
+    include_once 'assets/includes/loginform.php';
     if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['fname'])) {
         include_once 'assets/php/login.php';
         login();
@@ -41,7 +41,7 @@ if ($_SESSION['occupation'] == "Administrator"){
     include_once 'assets/includes/students.php';
 }
 if ($_SESSION['occupation'] == "Teacher"){
-    echo "<a href='/assets/includes/registerform.php'>Register</a>";
+    echo "<a href='/assets/includes/registerform.php'>Register</a><br>";
     include_once 'assets/includes/students.php';
 }
 ?>
