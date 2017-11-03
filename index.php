@@ -18,7 +18,6 @@
 @session_start();
 
 if(!isset($_SESSION['login_user'])) {
-    echo "hi";
     include_once 'assets/includes/loginform.php';
     if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['fname'])) {
         include_once 'assets/php/login.php';
@@ -38,7 +37,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
     createUser();
 }
 if ($_SESSION['occupation'] == "Administrator"){
-    echo "<a href='/assets/includes/registerform.php'>Register</a>";
+    echo "<a href='/assets/includes/registerform.php'>Register</a><br>";
     include_once 'assets/includes/students.php';
 }
 if ($_SESSION['occupation'] == "Teacher"){
