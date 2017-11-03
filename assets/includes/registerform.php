@@ -45,6 +45,7 @@ include_once "$root/assets/php/login.php";
             <br>
             Class:<br>
             <select name="class">
+                <option value='NULL' selected></option>
                 <?php
                 $con = connectDB();
 

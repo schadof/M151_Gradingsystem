@@ -18,6 +18,7 @@
 @session_start();
 
 if(!isset($_SESSION['login_user'])) {
+    echo "hi";
     include_once 'assets/includes/loginform.php';
     if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['fname'])) {
         include_once 'assets/php/login.php';
@@ -26,15 +27,15 @@ if(!isset($_SESSION['login_user'])) {
             header("location: index.php");
         }
     }
-    if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['occupation']) && isset($_POST['class'])){
-        include_once 'assets/php/login.php';
-        createUser();
-    }
 }
 else{
     echo "<a href='assets/php/logout.php'>Logout</a>";
     echo "<br>";
     include_once 'assets/includes/grading.php';
+}
+if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['occupation']) && isset($_POST['class'])){
+    include_once 'assets/php/login.php';
+    createUser();
 }
 if ($_SESSION['occupation'] == "Administrator"){
     echo "<a href='/assets/includes/registerform.php'>Register</a>";

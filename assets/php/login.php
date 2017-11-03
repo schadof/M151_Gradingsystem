@@ -85,6 +85,6 @@ function createUser() {
     $occupation = stripslashes($occupation);
     $class = stripslashes($class);
     $query = odbc_exec(connectDB(), "insert into `users` (fname, lname, username, password, occupation, class) 
-                                                VALUES ('$fname', '$lname', '$username', '$password', '$occupation', '$class')");
+                                                VALUES ('$fname', '$lname', '$username', '$password', $occupation, $class)");
     odbc_close(connectDB()); // Closing Connection
 }
