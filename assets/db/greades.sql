@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 31, 2017 at 03:43 PM
+-- Generation Time: Nov 14, 2017 at 04:58 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -65,7 +65,11 @@ CREATE TABLE `marks` (
 INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `user`, `teacher`) VALUES
 (2, 6, 2, 'Very Good', 1, 1, 4),
 (3, 5, 1, 'meh', 2, 1, 4),
-(4, 6, 1, 'good', 1, 1, 4);
+(4, 6, 1, 'good', 1, 1, 4),
+(5, 6, 2, 'Good', 3, 1, 4),
+(6, 5, 1, '', 2, 14, 4),
+(7, 5, 1, '', 3, 14, 4),
+(8, 6, 1, '', 3, 14, 4);
 
 -- --------------------------------------------------------
 
@@ -103,9 +107,9 @@ CREATE TABLE `occupations` (
 --
 
 INSERT INTO `occupations` (`id`, `occupation`) VALUES
-(1, 'Administrator'),
+(1, 'Student'),
 (2, 'Teacher'),
-(3, 'Student');
+(3, 'Administrator');
 
 -- --------------------------------------------------------
 
@@ -129,7 +133,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `username`, `password`, `occupation`, `class`) VALUES
 (1, 'Lars', 'Ragutt', 'l.ragutt', '098f6bcd4621d373cade4e832627b4f6', 1, 2),
-(4, 'Michael', 'Müller', 'm.müller', '098f6bcd4621d373cade4e832627b4f6', 2, NULL);
+(4, 'Michael', 'Müller', 'm.müller', '098f6bcd4621d373cade4e832627b4f6', 2, NULL),
+(13, 'Heinz', 'Gruber', 'h.gruber', '098f6bcd4621d373cade4e832627b4f6', 3, NULL),
+(14, 'William', 'Turner', 'w.turner', '098f6bcd4621d373cade4e832627b4f6', 1, 1),
+(15, 'Gandalf', 'Heinzel', 'g.heinzel', '098f6bcd4621d373cade4e832627b4f6', 1, 3);
 
 --
 -- Indexes for dumped tables
@@ -184,7 +191,7 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT for table `marks`
 --
 ALTER TABLE `marks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -202,7 +209,7 @@ ALTER TABLE `occupations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
