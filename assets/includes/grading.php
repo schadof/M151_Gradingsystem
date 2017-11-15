@@ -50,7 +50,7 @@ u.username = '" . $_SESSION['login_user'] . "';";
         }
         $calculation = "(" . $calculation . ")/(" . $weighting . ")";
         eval('$math = (' . $calculation . ');');
-        echo "<td class='grade'>$math</td>";
+        echo "<td class='grade'>" . round($math, 2) . "</td>";
         echo "</table>";
         echo "</br>";
     }

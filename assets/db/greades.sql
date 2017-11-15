@@ -65,8 +65,8 @@ CREATE TABLE `marks` (
 INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `user`, `teacher`) VALUES
 (2, 6, 2, 'Very Good', 1, 1, 4),
 (3, 5, 1, 'meh', 2, 1, 4),
-(4, 6, 1, 'good', 1, 1, 4),
-(5, 6, 2, 'Good', 3, 1, 4),
+(4, 5, 1, 'Good', 1, 1, 4),
+(5, 6, 2, 'Very Good', 3, 1, 4),
 (6, 5, 1, '', 2, 14, 4),
 (7, 5, 1, '', 3, 14, 4),
 (8, 6, 1, '', 3, 14, 4);

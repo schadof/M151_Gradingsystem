@@ -34,24 +34,24 @@ function getStudents (){
 //Sets Session Tokens if password and username in post were correct
 function login() {
     // Define $username and $password
-    $name = $_POST['username'];
+    $username = $_POST['username'];
     $password = md5($_POST['password']);
     // Establishing Connection with Server by passing server_name, user_id, password and database as a parameter
-    $name = stripslashes($name);
+    $username = stripslashes($username);
     // SQL query to fetch information of registerd users and finds user match.
     $login_sql = "
     SELECT u.username, u.password, o.occupation FROM users u
     JOIN occupations o
     ON u.occupation = o.id
     WHERE `username` 
-    LIKE '".$name."' 
+    LIKE '".$username."' 
     AND password 
     LIKE '".$password."'";
     $result = odbc_exec(connectDB(), $login_sql);
     $rows = odbc_num_rows($result);
     if ($rows == 1) {
         $occupation = odbc_result($result,"occupation");
-        $_SESSION['login_user'] = $name; // Initializing Session
+        $_SESSION['login_user'] = $username; // Initializing Session
         $_SESSION['occupation'] = $occupation; // Initializing Session
     } else {
         $error = "Username or Password is invalid";
