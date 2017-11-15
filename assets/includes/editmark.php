@@ -16,9 +16,10 @@
 <body>
 <?php
 @session_start();
-$root = $_SERVER['DOCUMENT_ROOT'];
-include_once "$root/assets/php/login.php";
-$con = connectDB();
+if ($_SESSION['occupation'] == "Teacher") {
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    include_once "$root/assets/php/login.php";
+    $con = connectDB();
 
     $sql = "
 SELECT module FROM modules;";
@@ -67,6 +68,7 @@ u.id = '" . $_GET['student'] . "';";
     echo "<input type='submit' value='Submit'>";
     echo "</form>";
     odbc_close($con);
+}
 ?>
 <br>
 <a href='/index.php'>Home</a>

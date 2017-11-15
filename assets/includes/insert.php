@@ -1,5 +1,6 @@
 <?php
 @session_start();
+if ($_SESSION['occupation'] == "Teacher") {
 $root = $_SERVER['DOCUMENT_ROOT'];
 include_once "$root/assets/php/login.php";
 ?>
@@ -30,10 +31,10 @@ include_once "$root/assets/php/login.php";
 
                 $sql = "SELECT * FROM modules;";
 
-                $result = odbc_exec($con,$sql);
+                $result = odbc_exec($con, $sql);
 
-                while(odbc_fetch_row($result)) {
-                    $module_id = odbc_result($result,"id");
+                while (odbc_fetch_row($result)) {
+                    $module_id = odbc_result($result, "id");
                     $module = odbc_result($result, "module");
                     echo "<option value='$module_id'>$module</option>";
                 }
@@ -45,8 +46,8 @@ include_once "$root/assets/php/login.php";
                 <?php
                 $result = getStudents();
 
-                while(odbc_fetch_row($result)) {
-                    $student_id = odbc_result($result,"id");
+                while (odbc_fetch_row($result)) {
+                    $student_id = odbc_result($result, "id");
                     $student = odbc_result($result, "username");
                     echo "<option value='$student_id'>$student</option>";
                 }
@@ -59,6 +60,9 @@ include_once "$root/assets/php/login.php";
     </div>
 </div>
 <br>
+<?php
+}
+?>
 <a href='/index.php'>Home</a>
 </body>
 </html>

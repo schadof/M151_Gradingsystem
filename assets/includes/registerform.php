@@ -1,5 +1,6 @@
 <?php
 @session_start();
+if ($_SESSION['occupation'] == "Teacher" || $_SESSION['occupation'] == "Administrator") {
 $root = $_SERVER['DOCUMENT_ROOT'];
 include_once "$root/assets/php/login.php";
 ?>
@@ -33,10 +34,10 @@ include_once "$root/assets/php/login.php";
 
                 $sql = "SELECT * FROM occupations;";
 
-                $result = odbc_exec($con,$sql);
+                $result = odbc_exec($con, $sql);
 
-                while(odbc_fetch_row($result)) {
-                    $occupation_id = odbc_result($result,"id");
+                while (odbc_fetch_row($result)) {
+                    $occupation_id = odbc_result($result, "id");
                     $occupation = odbc_result($result, "occupation");
                     echo "<option value='$occupation_id'>$occupation</option>";
                 }
@@ -51,10 +52,10 @@ include_once "$root/assets/php/login.php";
 
                 $sql = "SELECT * FROM classes;";
 
-                $result = odbc_exec($con,$sql);
+                $result = odbc_exec($con, $sql);
 
-                while(odbc_fetch_row($result)) {
-                    $class_id = odbc_result($result,"id");
+                while (odbc_fetch_row($result)) {
+                    $class_id = odbc_result($result, "id");
                     $class = odbc_result($result, "class");
                     echo "<option value='$class_id'>$class</option>";
                 }
@@ -66,6 +67,9 @@ include_once "$root/assets/php/login.php";
         </form>
     </div>
 </div>
+<?php
+}
+?>
 <br>
 <a href='/index.php'>Home</a>
 </body>
