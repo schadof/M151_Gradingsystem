@@ -17,7 +17,7 @@ SELECT u.fname, u.lname, u.username, c.class, ma.mark, ma.weight, ma.description
 JOIN classes c
 ON u.class = c.id
 JOIN marks ma
-ON ma.user = u.id
+ON ma.student = u.id
 JOIN modules mo
 ON ma.module = mo.id
 WHERE mo.module = '$module'

@@ -36,6 +36,10 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
     include_once 'assets/php/login.php';
     createUser();
 }
+if (isset($_POST['mark']) && isset($_POST['weight']) && isset($_POST['description']) && isset($_POST['module']) && isset($_POST['student'])){
+    include_once 'assets/php/login.php';
+    createMark();
+}
 if ($_SESSION['occupation'] == "Administrator"){
     echo "<a href='/assets/includes/registerform.php'>Register</a><br>";
     include_once 'assets/includes/students.php';

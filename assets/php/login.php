@@ -40,7 +40,7 @@ function login() {
     $username = stripslashes($username);
     // SQL query to fetch information of registerd users and finds user match.
     $login_sql = "
-    SELECT u.username, u.password, o.occupation FROM users u
+    SELECT u.id, u.username, u.password, o.occupation FROM users u
     JOIN occupations o
     ON u.occupation = o.id
     WHERE `username` 
@@ -51,7 +51,9 @@ function login() {
     $rows = odbc_num_rows($result);
     if ($rows == 1) {
         $occupation = odbc_result($result,"occupation");
+        $username_id = odbc_result($result,"id");
         $_SESSION['login_user'] = $username; // Initializing Session
+        $_SESSION['loginid_user'] = $username_id; // Initializing Session
         $_SESSION['occupation'] = $occupation; // Initializing Session
     } else {
         $error = "Username or Password is invalid";
@@ -86,5 +88,32 @@ function createUser() {
     $class = stripslashes($class);
     $query = odbc_exec(connectDB(), "insert into `users` (fname, lname, username, password, occupation, class) 
                                                 VALUES ('$fname', '$lname', '$username', '$password', $occupation, $class)");
+    odbc_close(connectDB()); // Closing Connection
+}
+
+//Creates mark
+function createMark() {
+    $mark=$_POST['mark'];
+    unset($_POST['mark']);
+
+    $weight=$_POST['weight'];
+    unset($_POST['weight']);
+
+    $description=$_POST['description'];
+    unset($_POST['description']);
+
+    $module=$_POST['module'];
+    unset($_POST['module']);
+
+    $student=$_POST['student'];
+    unset($_POST['student']);
+
+    $teacher=$_SESSION['loginid_user'];
+    $mark = stripslashes($mark);
+    $weight = stripslashes($weight);
+    $student = stripslashes($student);
+    $teacher = stripslashes($teacher);
+    $query = odbc_exec(connectDB(), "insert into `marks` (mark, weight, description, `module`, student, teacher) 
+                                                VALUES ('$mark', '$weight', '$description', '$module', $student, $teacher)");
     odbc_close(connectDB()); // Closing Connection
 }
