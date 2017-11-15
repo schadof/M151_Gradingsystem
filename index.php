@@ -45,6 +45,7 @@ if ($_SESSION['occupation'] == "Administrator"){
     include_once 'assets/includes/students.php';
 }
 if ($_SESSION['occupation'] == "Teacher"){
+    echo "<a href='/assets/includes/insert.php'>Add Mark</a><br>";
     echo "<a href='/assets/includes/registerform.php'>Register</a><br>";
     include_once 'assets/includes/students.php';
 }

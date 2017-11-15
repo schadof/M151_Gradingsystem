@@ -25,7 +25,7 @@ if ($_SESSION['occupation'] == "Teacher") {
 SELECT module FROM modules;";
 
     $result = odbc_exec($con, $sql);
-    echo "<form method='POST'>";
+    echo "<form action='/insert.php' method='POST'>";
     while (odbc_fetch_row($result)) {
         $module = odbc_result($result, "module");
         /* show tables */
@@ -51,15 +51,18 @@ u.id = '" . $_GET['student'] . "';";
             echo $module;
             echo "<table>";
             echo "<td>Mark</td>";
-            echo "<td>Weight</td></tr>";
+            echo "<td>Weight</td>";
+            echo "<td>Description</td></tr>";
             while (odbc_fetch_row($result1)) {
                 $mark_id = odbc_result($result1, "ma_id");
                 $mark = odbc_result($result1, "mark");
                 $weight = odbc_result($result1, "weight");
+                $description = odbc_result($result1, "description");
 
 
                 echo "<td><input type='number' name='mark_$mark_id' value='$mark'></td>";
-                echo "<td><input type='number' name='weight_$mark_id' value='$weight'></td></tr>";
+                echo "<td><input type='number' name='weight_$mark_id' value='$weight'></td>";
+                echo "<td><input type='text' name='description_$mark_id' value='$description'></td></tr>";
             }
             echo "</table>";
             echo "</br>";
@@ -67,6 +70,33 @@ u.id = '" . $_GET['student'] . "';";
     }
     echo "<input type='submit' value='Submit'>";
     echo "</form>";
+
+if (isset($_POST['submit'])){
+    $mark=$_POST['mark'];
+    unset($_POST['mark']);
+
+    $weight=$_POST['weight'];
+    unset($_POST['weight']);
+
+    $description=$_POST['description'];
+    unset($_POST['description']);
+
+    $module=$_POST['module'];
+    unset($_POST['module']);
+
+    $student=$_POST['student'];
+    unset($_POST['student']);
+
+
+
+    $mark = stripslashes($mark);
+    $weight = stripslashes($weight);
+    $student = stripslashes($student);
+    $query = odbc_exec(connectDB(), "
+    UPDATE marks
+    SET mark = '$mark', weight = '$weight', description = '$description'
+    WHERE id = $id;");
+}
     odbc_close($con);
 }
 ?>
