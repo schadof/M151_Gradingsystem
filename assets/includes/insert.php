@@ -16,7 +16,7 @@ include_once "$root/assets/php/login.php";
     <div id="register">
         <form action="/index.php" method="POST">
             Mark:<br>
-            <input type="text" name="mark" placeholder="Mark">
+            <input type="number" name="mark" placeholder="Mark">
             <br>
             Weight:<br>
             <input type="number" name="weight" placeholder="Weight">
