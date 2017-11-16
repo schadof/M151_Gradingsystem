@@ -37,6 +37,7 @@ u.username = '" . $_SESSION["login_user"] . "';";
         while (odbc_fetch_row($result1)) {
             $mark = odbc_result($result1, "mark");
             $weight = odbc_result($result1, "weight");
+            $description = odbc_result($result1, "description");
             $formula = $mark . "*" . $weight;
             if (!$calculation && $weight) {
                 $calculation = $formula;
@@ -46,7 +47,7 @@ u.username = '" . $_SESSION["login_user"] . "';";
                 $weighting = $weighting . "+" . $weight;
             }
 
-            echo "<td>$formula</td>";
+            echo "<td class='tooltip'>$formula<span class='tooltiptext'>$description</span></td>";
         }
         $calculation = "(" . $calculation . ")/(" . $weighting . ")";
         eval('$math = (' . $calculation . ');');
