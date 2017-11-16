@@ -47,7 +47,7 @@ u.username = '" . $_SESSION["login_user"] . "';";
                 $weighting = $weighting . "+" . $weight;
             }
 
-            echo "<td class='tooltip'>$formula<span class='tooltiptext'>$description</span></td>";
+            echo "<td data-balloon='Weight: $weight, Description: $description' data-balloon-pos='right'>$mark</td>";
         }
         $calculation = "(" . $calculation . ")/(" . $weighting . ")";
         eval('$math = (' . $calculation . ');');
@@ -56,5 +56,6 @@ u.username = '" . $_SESSION["login_user"] . "';";
         echo "</br>";
     }
 }
+echo "You can hover over marks for weight and description";
 odbc_close($con);
 

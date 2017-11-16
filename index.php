@@ -9,6 +9,7 @@
     <meta name="author" content="Lars Ragutt">
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/balloon.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
 
 </head>
