@@ -33,12 +33,19 @@ table, th, td {
     border: 1px solid black;
 }
 
-td{
-    width: 36px;
-    height: 18px;
-    text-align: center;
+td, th{
+    width: 110px;
+    padding: 5px;
 }
 .grade{
     background-color: aqua;
     align: right;
+}
+/* Sortable tables */
+table.sortable thead {
+    width: auto;
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
 }

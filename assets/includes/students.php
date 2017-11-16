@@ -1,3 +1,4 @@
+<script src="/assets/javascript/sorttable.js"></script>
 <?php
 @session_start();
 if ($_SESSION["occupation"] == "Teacher" || $_SESSION["occupation"] == "Administrator") {
@@ -7,7 +8,8 @@ if ($_SESSION["occupation"] == "Teacher" || $_SESSION["occupation"] == "Administ
 
     if (odbc_num_rows($students) != 0) {
         echo "Students:";
-        echo "<table>";
+        echo "<table class='sortable'>";
+        echo "<thead><tr><th>First Name</th><th>Last Name</th><th>Username</th><th>Class</th><th>Edit</th></tr></thead><tbody>";
         while (odbc_fetch_row($students)) {
             $id = odbc_result($students, "id");
             $fname = odbc_result($students, "fname");
@@ -21,7 +23,7 @@ if ($_SESSION["occupation"] == "Teacher" || $_SESSION["occupation"] == "Administ
             echo "<td>$class</td>";
             echo "<td><a href='/assets/includes/editmark.php?student=$id'>Edit</a></td></tr>";
         }
-        echo "</table>";
+        echo "</tbody></table>";
         odbc_close(connectDB()); // Closing Connection
     }
 }
