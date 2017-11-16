@@ -3,10 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 14, 2017 at 04:58 PM
+-- Generation Time: Nov 16, 2017 at 07:31 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
+--
+-- Added Tooltip descriptions for grades
+--
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -21,6 +24,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `greades`
 --
+CREATE DATABASE IF NOT EXISTS `greades` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `greades`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +33,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `classes`
 --
 
+DROP TABLE IF EXISTS `classes`;
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
   `class` varchar(255) NOT NULL
@@ -48,13 +54,14 @@ INSERT INTO `classes` (`id`, `class`) VALUES
 -- Table structure for table `marks`
 --
 
+DROP TABLE IF EXISTS `marks`;
 CREATE TABLE `marks` (
   `id` int(11) NOT NULL,
   `mark` int(11) NOT NULL,
   `weight` float NOT NULL,
   `description` varchar(255) NOT NULL,
   `module` int(11) NOT NULL,
-  `user` int(11) NOT NULL,
+  `student` int(11) NOT NULL,
   `teacher` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -62,11 +69,11 @@ CREATE TABLE `marks` (
 -- Dumping data for table `marks`
 --
 
-INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `user`, `teacher`) VALUES
-(2, 6, 2, 'Very Good', 1, 1, 4),
-(3, 5, 1, 'meh', 2, 1, 4),
-(4, 5, 1, 'Good', 1, 1, 4),
-(5, 6, 2, 'Very Good', 3, 1, 4),
+INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `student`, `teacher`) VALUES
+(2, 6, 2, 'Lernprüfung 1', 1, 1, 4),
+(3, 5, 1, 'Vortrag CSS', 2, 1, 4),
+(4, 5, 1, 'Website Project', 1, 1, 4),
+(5, 6, 2, 'Lernprüfung 1', 3, 1, 4),
 (6, 5, 1, '', 2, 14, 4),
 (7, 5, 1, '', 3, 14, 4),
 (8, 6, 1, '', 3, 14, 4);
@@ -77,6 +84,7 @@ INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `user`, `t
 -- Table structure for table `modules`
 --
 
+DROP TABLE IF EXISTS `modules`;
 CREATE TABLE `modules` (
   `id` int(11) NOT NULL,
   `module` varchar(255) NOT NULL
@@ -97,6 +105,7 @@ INSERT INTO `modules` (`id`, `module`) VALUES
 -- Table structure for table `occupations`
 --
 
+DROP TABLE IF EXISTS `occupations`;
 CREATE TABLE `occupations` (
   `id` int(11) NOT NULL,
   `occupation` varchar(255) NOT NULL
@@ -117,6 +126,7 @@ INSERT INTO `occupations` (`id`, `occupation`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
@@ -155,7 +165,7 @@ ALTER TABLE `marks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `teacher` (`teacher`),
   ADD KEY `module` (`module`),
-  ADD KEY `user` (`user`);
+  ADD KEY `student` (`student`) USING BTREE;
 
 --
 -- Indexes for table `modules`
@@ -221,7 +231,7 @@ ALTER TABLE `users`
 ALTER TABLE `marks`
   ADD CONSTRAINT `marks_ibfk_1` FOREIGN KEY (`teacher`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `marks_ibfk_2` FOREIGN KEY (`module`) REFERENCES `modules` (`id`),
-  ADD CONSTRAINT `marks_ibfk_3` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `marks_ibfk_3` FOREIGN KEY (`student`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`
