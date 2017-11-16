@@ -65,6 +65,7 @@ function login() {
 
 //Creates user
 function createUser() {
+    $conn = connectDB();
     $fname=$_POST["fname"];
     unset($_POST["fname"]);
 
@@ -86,13 +87,19 @@ function createUser() {
     $lname = stripslashes($lname);
     $occupation = stripslashes($occupation);
     $class = stripslashes($class);
-    $query = odbc_exec(connectDB(), "insert into `users` (fname, lname, username, password, occupation, class) 
+    odbc_autocommit($conn, FALSE);
+    $query = odbc_exec($conn, "insert into `users` (fname, lname, username, password, occupation, class) 
                                                 VALUES ('$fname', '$lname', '$username', '$password', $occupation, $class)");
-    odbc_close(connectDB()); // Closing Connection
+    if (!odbc_error())
+        odbc_commit($conn);
+    else
+        odbc_rollback($conn);
+    odbc_close($conn); // Closing Connection
 }
 
 //Creates mark
 function createMark() {
+    $conn = connectDB();
     $mark=$_POST["mark"];
     unset($_POST["mark"]);
 
@@ -113,12 +120,18 @@ function createMark() {
     $weight = stripslashes($weight);
     $student = stripslashes($student);
     $teacher = stripslashes($teacher);
-    $query = odbc_exec(connectDB(), "insert into `marks` (mark, weight, description, `module`, student, teacher) 
+    odbc_autocommit($conn, FALSE);
+    $query = odbc_exec($conn, "insert into `marks` (mark, weight, description, `module`, student, teacher) 
                                                 VALUES ('$mark', '$weight', '$description', '$module', $student, $teacher)");
-    odbc_close(connectDB()); // Closing Connection
+    if (!odbc_error())
+        odbc_commit($conn);
+    else
+        odbc_rollback($conn);
+    odbc_close($conn); // Closing Connection
 }
 
 function editMarks(array $array){
+    $conn = connectDB();
     foreach($array as $id) {
         $mark = $_POST["mark_$id"];
         unset($_POST["mark_$id"]);
@@ -131,10 +144,16 @@ function editMarks(array $array){
 
         $mark = stripslashes($mark);
         $weight = stripslashes($weight);
-        $query = odbc_exec(connectDB(), "
+        odbc_autocommit($conn, FALSE);
+        $query = odbc_exec($conn, "
     UPDATE marks
     SET mark = '$mark', weight = '$weight', description = '$description'
     WHERE id = $id;");
+        if (!odbc_error())
+            odbc_commit($conn);
+        else
+            odbc_rollback($conn);
         unset($array);
+        odbc_close(connectDB()); // Closing Connection
     }
 }

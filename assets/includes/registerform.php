@@ -8,7 +8,7 @@ include_once "$root/assets/php/login.php";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Add User</title>
 </head>
 <body>
 <div id="form">
