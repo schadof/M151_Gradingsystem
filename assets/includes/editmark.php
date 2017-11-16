@@ -20,12 +20,13 @@ if ($_SESSION['occupation'] == "Teacher") {
     $root = $_SERVER['DOCUMENT_ROOT'];
     include_once "$root/assets/php/login.php";
     $con = connectDB();
+    $array = array();
 
     $sql = "
 SELECT module FROM modules;";
 
     $result = odbc_exec($con, $sql);
-    echo "<form action='/insert.php' method='POST'>";
+    echo "<form method='POST'>";
     while (odbc_fetch_row($result)) {
         $module = odbc_result($result, "module");
         /* show tables */
@@ -55,6 +56,7 @@ u.id = '" . $_GET['student'] . "';";
             echo "<td>Description</td></tr>";
             while (odbc_fetch_row($result1)) {
                 $mark_id = odbc_result($result1, "ma_id");
+                $array[] = $mark_id;
                 $mark = odbc_result($result1, "mark");
                 $weight = odbc_result($result1, "weight");
                 $description = odbc_result($result1, "description");
@@ -68,35 +70,14 @@ u.id = '" . $_GET['student'] . "';";
             echo "</br>";
         }
     }
-    echo "<input type='submit' value='Submit'>";
+    echo "<input type='submit' value='Submit' name='submit'>";
     echo "</form>";
 
-if (isset($_POST['submit'])){
-    $mark=$_POST['mark'];
-    unset($_POST['mark']);
-
-    $weight=$_POST['weight'];
-    unset($_POST['weight']);
-
-    $description=$_POST['description'];
-    unset($_POST['description']);
-
-    $module=$_POST['module'];
-    unset($_POST['module']);
-
-    $student=$_POST['student'];
-    unset($_POST['student']);
-
-
-
-    $mark = stripslashes($mark);
-    $weight = stripslashes($weight);
-    $student = stripslashes($student);
-    $query = odbc_exec(connectDB(), "
-    UPDATE marks
-    SET mark = '$mark', weight = '$weight', description = '$description'
-    WHERE id = $id;");
-}
+    if(isset($_POST["submit"])){
+        include_once "$root/assets/php/login.php";
+        editMarks($array);
+        header( "refresh:0.1; url=../../index.php" );
+    }
     odbc_close($con);
 }
 ?>

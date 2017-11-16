@@ -34,8 +34,8 @@ function getStudents (){
 //Sets Session Tokens if password and username in post were correct
 function login() {
     // Define $username and $password
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $username = $_POST["username"];
+    $password = md5($_POST["password"]);
     // Establishing Connection with Server by passing server_name, user_id, password and database as a parameter
     $username = stripslashes($username);
     // SQL query to fetch information of registerd users and finds user match.
@@ -52,36 +52,36 @@ function login() {
     if ($rows == 1) {
         $occupation = odbc_result($result,"occupation");
         $username_id = odbc_result($result,"id");
-        $_SESSION['login_user'] = $username; // Initializing Session
-        $_SESSION['loginid_user'] = $username_id; // Initializing Session
-        $_SESSION['occupation'] = $occupation; // Initializing Session
+        $_SESSION["login_user"] = $username; // Initializing Session
+        $_SESSION["loginid_user"] = $username_id; // Initializing Session
+        $_SESSION["occupation"] = $occupation; // Initializing Session
     } else {
         $error = "Username or Password is invalid";
         echo $error;
-        $_SESSION['login_failure'] = 'true';
+        $_SESSION["login_failure"] = 'true';
     }
     odbc_close(connectDB()); // Closing Connection
 }
 
 //Creates user
 function createUser() {
-    $fname=$_POST['fname'];
-    unset($_POST['fname']);
+    $fname=$_POST["fname"];
+    unset($_POST["fname"]);
 
-    $lname=$_POST['lname'];
-    unset($_POST['lname']);
+    $lname=$_POST["lname"];
+    unset($_POST["lname"]);
 
-    $username=$_POST['username'];
-    unset($_POST['username']);
+    $username=$_POST["username"];
+    unset($_POST["username"]);
 
-    $password=md5($_POST['password']);
-    unset($_POST['password']);
+    $password=md5($_POST["password"]);
+    unset($_POST["password"]);
 
-    $occupation=$_POST['occupation'];
-    unset($_POST['occupation']);
+    $occupation=$_POST["occupation"];
+    unset($_POST["occupation"]);
 
-    $class=$_POST['class'];
-    unset($_POST['class']);
+    $class=$_POST["class"];
+    unset($_POST["class"]);
     $fname = stripslashes($fname);
     $lname = stripslashes($lname);
     $occupation = stripslashes($occupation);
@@ -93,22 +93,22 @@ function createUser() {
 
 //Creates mark
 function createMark() {
-    $mark=$_POST['mark'];
-    unset($_POST['mark']);
+    $mark=$_POST["mark"];
+    unset($_POST["mark"]);
 
-    $weight=$_POST['weight'];
-    unset($_POST['weight']);
+    $weight=$_POST["weight"];
+    unset($_POST["weight"]);
 
-    $description=$_POST['description'];
-    unset($_POST['description']);
+    $description=$_POST["description"];
+    unset($_POST["description"]);
 
-    $module=$_POST['module'];
-    unset($_POST['module']);
+    $module=$_POST["module"];
+    unset($_POST["module"]);
 
-    $student=$_POST['student'];
-    unset($_POST['student']);
+    $student=$_POST["student"];
+    unset($_POST["student"]);
 
-    $teacher=$_SESSION['loginid_user'];
+    $teacher=$_SESSION["loginid_user"];
     $mark = stripslashes($mark);
     $weight = stripslashes($weight);
     $student = stripslashes($student);
@@ -116,4 +116,25 @@ function createMark() {
     $query = odbc_exec(connectDB(), "insert into `marks` (mark, weight, description, `module`, student, teacher) 
                                                 VALUES ('$mark', '$weight', '$description', '$module', $student, $teacher)");
     odbc_close(connectDB()); // Closing Connection
+}
+
+function editMarks(array $array){
+    foreach($array as $id) {
+        $mark = $_POST["mark_$id"];
+        unset($_POST["mark_$id"]);
+
+        $weight = $_POST["weight_$id"];
+        unset($_POST["weight_$id"]);
+
+        $description = $_POST["description_$id"];
+        unset($_POST["description_$id"]);
+
+        $mark = stripslashes($mark);
+        $weight = stripslashes($weight);
+        $query = odbc_exec(connectDB(), "
+    UPDATE marks
+    SET mark = '$mark', weight = '$weight', description = '$description'
+    WHERE id = $id;");
+        unset($array);
+    }
 }

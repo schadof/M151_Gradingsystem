@@ -22,7 +22,7 @@ JOIN modules mo
 ON ma.module = mo.id
 WHERE mo.module = '$module'
 AND
-u.username = '" . $_SESSION['login_user'] . "';";
+u.username = '" . $_SESSION["login_user"] . "';";
     $result1 = odbc_exec($con, $sql1);
 //check SQL
     if (!$result1) {

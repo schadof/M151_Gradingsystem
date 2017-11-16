@@ -1,6 +1,6 @@
 <?php
 @session_start();
-if ($_SESSION['occupation'] == "Teacher") {
+if ($_SESSION["occupation"] == "Teacher") {
 $root = $_SERVER['DOCUMENT_ROOT'];
 include_once "$root/assets/php/login.php";
 ?>
