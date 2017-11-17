@@ -14,6 +14,10 @@
 </head>
 
 <body>
+<ul>
+    <li><a href="/index.php">Home</a></li>
+    <li><a href='assets/php/logout.php'>Logout</a></li>
+</ul>
 <?php
 @session_start();
 if ($_SESSION['occupation'] == "Teacher") {
@@ -81,7 +85,5 @@ u.id = '" . $_GET['student'] . "';";
     odbc_close($con);
 }
 ?>
-<br>
-<a href='/index.php'>Home</a>
 </body>
 </html>

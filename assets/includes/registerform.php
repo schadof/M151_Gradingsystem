@@ -9,11 +9,17 @@ include_once "$root/assets/php/login.php";
 <head>
     <meta charset="UTF-8">
     <title>Add User</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-<div id="form">
-    <h1 id="title">Enter User Data</h1>
-    <div id="register">
+<ul>
+    <li><a href="/index.php">Home</a></li>
+    <li><a href='assets/php/logout.php'>Logout</a></li>
+</ul>
+<div>
+    <h1>Enter User Data</h1>
+    <div>
         <form action="/index.php" method="POST">
             First Name:<br>
             <input type="text" name="fname" placeholder="First Name">
@@ -70,7 +76,5 @@ include_once "$root/assets/php/login.php";
 <?php
 }
 ?>
-<br>
-<a href='/index.php'>Home</a>
 </body>
 </html>

@@ -29,9 +29,10 @@ if(!isset($_SESSION['login_user'])) {
     }
 }
 else{
-    echo "<a href='assets/php/logout.php'>Logout</a>";
-    echo "<br>";
-    include_once 'assets/includes/grading.php';
+    ?>
+    <ul>
+        <li><a href="/index.php">Home</a></li>
+    <?php
 }
 if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['occupation']) && isset($_POST['class'])){
     include_once 'assets/php/login.php';
@@ -42,12 +43,20 @@ if (isset($_POST['mark']) && isset($_POST['weight']) && isset($_POST['descriptio
     createMark();
 }
 if ($_SESSION['occupation'] == "Administrator"){
-    echo "<a href='/assets/includes/registerform.php'>Add User</a><br>";
+    echo "<li><a href='/assets/includes/registerform.php'>Add User</a></li>";
+    echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
+    echo "</ul>";
     include_once 'assets/includes/students.php';
 }
 if ($_SESSION['occupation'] == "Teacher"){
-    echo "<a href='/assets/includes/insert.php'>Add Mark</a><br>";
+    echo "<li><a href='/assets/includes/insert.php'>Add Mark</a></li>";
+    echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
+    echo "</ul>";
     include_once 'assets/includes/students.php';
+}
+if ($_SESSION['occupation'] == "Student"){
+    echo "</ul>";
+    include_once 'assets/includes/grading.php';
 }
 ?>
 </body>

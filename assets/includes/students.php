@@ -8,7 +8,7 @@ if ($_SESSION["occupation"] == "Teacher" || $_SESSION["occupation"] == "Administ
 
     if (odbc_num_rows($students) != 0) {
         echo "Students:";
-        echo "<table class='sortable table-bordered'>";
+        echo "<table class='sortable table-bordered students'>";
         echo "<thead><tr><th>First Name</th><th>Last Name</th><th>Username</th><th>Class</th><th>Edit</th></tr></thead><tbody>";
         while (odbc_fetch_row($students)) {
             $id = odbc_result($students, "id");
