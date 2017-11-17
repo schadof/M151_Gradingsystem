@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2017 at 10:07 AM
+-- Generation Time: Nov 17, 2017 at 10:10 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -185,9 +185,7 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `username`, `password`, `occupation
 (4, 'Michael', 'Müller', 'm.müller', '098f6bcd4621d373cade4e832627b4f6', 2, NULL),
 (13, 'Heinz', 'Gruber', 'h.gruber', '098f6bcd4621d373cade4e832627b4f6', 3, NULL),
 (14, 'William', 'Turner', 'w.turner', '098f6bcd4621d373cade4e832627b4f6', 1, 1),
-(15, 'Gandalf', 'Heinzel', 'g.heinzel', '098f6bcd4621d373cade4e832627b4f6', 1, 3),
-(33, 'huhiuh', 'uhiuhu', 'huihiu', '5c297a2851f3abe2a32a9232f1e7b127', 1, 2),
-(34, 'huih', 'huhuih', 'iuhiu', '3d2b47fd0edf514b8603f0865b65f75b', 1, 1);
+(15, 'Gandalf', 'Heinzel', 'g.heinzel', '098f6bcd4621d373cade4e832627b4f6', 1, 3);
 
 --
 -- Indexes for dumped tables
