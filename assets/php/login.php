@@ -20,13 +20,7 @@ return $con;
 
 //Returns list of students
 function getStudents (){
-    $students_sql = "
-    SELECT u.id, u.fname, u.lname, u.username, c.class FROM users u
-    JOIN classes c
-    ON u.class = c.id
-    JOIN occupations o
-    ON u.occupation = o.id
-    WHERE o.occupation='Student'";
+    $students_sql = "CALL getStudents();";
     $students = odbc_exec(connectDB(), $students_sql);
     return $students;
 }
@@ -39,14 +33,7 @@ function login() {
     // Establishing Connection with Server by passing server_name, user_id, password and database as a parameter
     $username = stripslashes($username);
     // SQL query to fetch information of registerd users and finds user match.
-    $login_sql = "
-    SELECT u.id, u.username, u.password, o.occupation FROM users u
-    JOIN occupations o
-    ON u.occupation = o.id
-    WHERE `username` 
-    LIKE '".$username."' 
-    AND password 
-    LIKE '".$password."'";
+    $login_sql = "CALL login('$username', '$password')";
     $result = odbc_exec(connectDB(), $login_sql);
     $rows = odbc_num_rows($result);
     if ($rows == 1) {
@@ -88,8 +75,7 @@ function createUser() {
     $occupation = stripslashes($occupation);
     $class = stripslashes($class);
     odbc_autocommit($conn, FALSE);
-    $query = odbc_exec($conn, "insert into `users` (fname, lname, username, password, occupation, class) 
-                                                VALUES ('$fname', '$lname', '$username', '$password', $occupation, $class)");
+    $query = odbc_exec($conn, "CALL createUser('$fname', '$lname', '$username', '$password', $occupation, $class)");
     if (!odbc_error())
         odbc_commit($conn);
     else
@@ -121,8 +107,7 @@ function createMark() {
     $student = stripslashes($student);
     $teacher = stripslashes($teacher);
     odbc_autocommit($conn, FALSE);
-    $query = odbc_exec($conn, "insert into `marks` (mark, weight, description, `module`, student, teacher) 
-                                                VALUES ('$mark', '$weight', '$description', '$module', $student, $teacher)");
+    $query = odbc_exec($conn, "CALL createMark($mark, $weight, '$description', $module, $student, $teacher)");
     if (!odbc_error())
         odbc_commit($conn);
     else
@@ -145,10 +130,7 @@ function editMarks(array $array){
         $mark = stripslashes($mark);
         $weight = stripslashes($weight);
         odbc_autocommit($conn, FALSE);
-        $query = odbc_exec($conn, "
-    UPDATE marks
-    SET mark = '$mark', weight = '$weight', description = '$description'
-    WHERE id = $id;");
+        $query = odbc_exec($conn, "CALL editMarks($id, $mark, $weight, $description)");
         if (!odbc_error())
             odbc_commit($conn);
         else

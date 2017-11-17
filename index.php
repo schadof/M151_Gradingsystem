@@ -37,9 +37,11 @@ else{
 if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['occupation']) && isset($_POST['class'])){
     include_once 'assets/php/login.php';
     createUser();
+    header( "refresh:0.1; url=/index.php" );
 }
 if (isset($_POST['mark']) && isset($_POST['weight']) && isset($_POST['description']) && isset($_POST['module']) && isset($_POST['student'])){
     include_once 'assets/php/login.php';
+    header( "refresh:0.1; url=/index.php" );
     createMark();
 }
 if ($_SESSION['occupation'] == "Administrator"){
