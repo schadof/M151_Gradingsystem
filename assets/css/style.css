@@ -44,8 +44,11 @@ td, th{
 /* Sortable tables */
 table.sortable thead {
     width: auto;
-    background-color:#eee;
+    background-color:#dcdcdc;
     color:#666666;
     font-weight: bold;
     cursor: default;
+}
+tbody tr:nth-child(even) {
+    background-color: #eee;
 }
