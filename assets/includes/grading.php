@@ -34,7 +34,7 @@ u.username = '" . $_SESSION["login_user"] . "';";
             $calculation = "";
             $weight = "";
             echo $module;
-            echo "<table>";
+            echo "<table class='marks'>";
             while (odbc_fetch_row($result1)) {
                 $mark = odbc_result($result1, "mark");
                 $weight = odbc_result($result1, "weight");
