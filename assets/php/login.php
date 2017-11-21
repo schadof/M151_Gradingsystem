@@ -130,12 +130,14 @@ function editMarks(array $array){
         $mark = stripslashes($mark);
         $weight = stripslashes($weight);
         odbc_autocommit($conn, FALSE);
-        $query = odbc_exec($conn, "CALL editMarks($id, $mark, $weight, $description)");
-        if (!odbc_error())
+
+        $query = odbc_exec($conn, "CALL editMarks($id, $mark, $weight, '$description')");
+        if (!odbc_error()) {
             odbc_commit($conn);
+        }
         else
             odbc_rollback($conn);
         unset($array);
-        odbc_close(connectDB()); // Closing Connection
     }
+    odbc_close($conn); // Closing Connection
 }

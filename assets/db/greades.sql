@@ -95,7 +95,7 @@ INSERT INTO `classes` (`id`, `class`) VALUES
 DROP TABLE IF EXISTS `marks`;
 CREATE TABLE `marks` (
   `id` int(11) NOT NULL,
-  `mark` int(11) NOT NULL,
+  `mark` float NOT NULL,
   `weight` float NOT NULL,
   `description` varchar(255) NOT NULL,
   `module` int(11) NOT NULL,

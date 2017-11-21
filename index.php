@@ -44,22 +44,24 @@ if (isset($_POST['mark']) && isset($_POST['weight']) && isset($_POST['descriptio
     header( "refresh:0.1; url=/index.php" );
     createMark();
 }
-if ($_SESSION['occupation'] == "Administrator"){
-    echo "<li><a href='/assets/includes/registerform.php'>Add User</a></li>";
-    echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
-    echo "</ul>";
-    include_once 'assets/includes/students.php';
-}
-if ($_SESSION['occupation'] == "Teacher"){
-    echo "<li><a href='/assets/includes/insert.php'>Add Mark</a></li>";
-    echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
-    echo "</ul>";
-    include_once 'assets/includes/students.php';
-}
-if ($_SESSION['occupation'] == "Student"){
-    echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
-    echo "</ul>";
-    include_once 'assets/includes/grading.php';
+if(isset($_SESSION['occupation'])) {
+    if ($_SESSION['occupation'] == "Administrator") {
+        echo "<li><a href='/assets/includes/registerform.php'>Add User</a></li>";
+        echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
+        echo "</ul>";
+        include_once 'assets/includes/students.php';
+    }
+    if ($_SESSION['occupation'] == "Teacher") {
+        echo "<li><a href='/assets/includes/insert.php'>Add Mark</a></li>";
+        echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
+        echo "</ul>";
+        include_once 'assets/includes/students.php';
+    }
+    if ($_SESSION['occupation'] == "Student") {
+        echo "<li><a href='assets/php/logout.php'>Logout</a></li>";
+        echo "</ul>";
+        include_once 'assets/includes/grading.php';
+    }
 }
 ?>
 </body>

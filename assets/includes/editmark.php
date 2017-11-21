@@ -80,9 +80,9 @@ u.id = '" . $_GET['student'] . "';";
     if(isset($_POST["submit"])){
         include_once "$root/assets/php/login.php";
         editMarks($array);
+        odbc_close($con);
         header( "refresh:0.1; url=../../index.php" );
     }
-    odbc_close($con);
 }
 ?>
 </body>
