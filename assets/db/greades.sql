@@ -109,7 +109,7 @@ CREATE TABLE `marks` (
 
 INSERT INTO `marks` (`id`, `mark`, `weight`, `description`, `module`, `student`, `teacher`) VALUES
 (2, 6, 2, 'Lernprüfung 1', 1, 1, 4),
-(3, 5, 1, 'Vortrag CSS', 2, 1, 4),
+(3, 5.5, 1.34, 'Vortrag CSS', 2, 1, 4),
 (4, 5, 1, 'Website Project', 1, 1, 4),
 (5, 6, 2, 'Lernprüfung 1', 3, 1, 4),
 (6, 5, 1, '', 2, 14, 4),
