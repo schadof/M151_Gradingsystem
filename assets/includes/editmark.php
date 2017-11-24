@@ -66,8 +66,8 @@ u.id = '" . $_GET['student'] . "';";
                 $description = odbc_result($result1, "description");
 
 
-                echo "<td><input type='number' name='mark_$mark_id' value='$mark'></td>";
-                echo "<td><input type='number' name='weight_$mark_id' value='$weight'></td>";
+                echo "<td><input type='number'  step='0.01' name='mark_$mark_id' value='$mark'></td>";
+                echo "<td><input type='number'  step='0.01' name='weight_$mark_id' value='$weight'></td>";
                 echo "<td><input type='text' name='description_$mark_id' value='$description'></td></tr>";
             }
             echo "</table>";

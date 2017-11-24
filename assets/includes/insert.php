@@ -22,10 +22,10 @@ include_once "$root/assets/php/login.php";
     <div>
         <form action="/index.php" method="POST">
             Mark:<br>
-            <input type="number" name="mark" placeholder="Mark">
+            <input type="number" step="0.01" name="mark" placeholder="Mark">
             <br>
             Weight:<br>
-            <input type="number" name="weight" placeholder="Weight">
+            <input type="number" step="0.01" name="weight" placeholder="Weight">
             <br>
             Description:<br>
             <input type="text" name="description" placeholder="Description">

@@ -29,7 +29,7 @@ DELIMITER $$
 -- Procedures
 --
 DROP PROCEDURE IF EXISTS `createMark`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createMark` (IN `v_mark` INT, IN `v_weight` FLOAT, IN `v_description` VARCHAR(255), IN `v_module` INT, IN `v_student` INT, IN `v_teacher` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createMark` (IN `v_mark` FLOAT, IN `v_weight` FLOAT, IN `v_description` VARCHAR(255), IN `v_module` INT, IN `v_student` INT, IN `v_teacher` INT)  NO SQL
 insert into `marks` (mark, weight, description, `module`, student, teacher) 
 VALUES (v_mark, v_weight, v_description, v_module, v_student, v_teacher)$$
 
@@ -39,7 +39,7 @@ insert into `users` (fname, lname, username, password, occupation, class)
 VALUES (v_fname, v_lname, v_username, v_password, v_occupation, v_class)$$
 
 DROP PROCEDURE IF EXISTS `editMarks`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `editMarks` (IN `v_id` INT, IN `v_mark` INT, IN `v_weight` FLOAT, IN `v_description` VARCHAR(255))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `editMarks` (IN `v_id` INT, IN `v_mark` FLOAT, IN `v_weight` FLOAT, IN `v_description` VARCHAR(255))  NO SQL
 UPDATE marks
     SET mark = v_mark, weight = v_weight, description = v_description
     WHERE id = v_id$$
